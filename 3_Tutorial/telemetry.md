@@ -1,15 +1,13 @@
-# Telemetry
-
+# 遥测
 官网英文原文地址：https://dev.px4.io/telemetry.html
 
-Telemetry can be used to communicate with QGroundControl and is very useful especially for tuning for example as parameters can be changed without plugging in a cable each time.
-
-## 3DR WIFI Telemetry
-With the 3DR WIFI Telemetry you just need one transmitter (provided you have a WIFI card/stick in your computer/tablet). Just connect the module to the ```TELEM``` port and it should act as a WIFI station.
+遥测可用于与QGroundControl进行通信，特别适用于调节参数，例如可以在不插入电缆的情况下更改参数。
+## 3DR 无线遥测
+使用3DR 无线遥测，只需要一个发射器（如果您的计算机/平板电脑上有一个WIFI卡/棒）。只需将该模块连接到TELEM端口，就可以作为一个WIFI站。
 ```sh
 essid: APM_PIX
 password: 12345678
 ```
-Once connected to the WIFI, it should automatically connect to QGroundControl.
+一旦连接到WIFI，它应该自动连接到QGroundControl。
 ![wifi1](../pictures//hardware/3dr_wifi_1.JPG)
 ![wifi2](../pictures//hardware/3dr_wifi_2.png)
