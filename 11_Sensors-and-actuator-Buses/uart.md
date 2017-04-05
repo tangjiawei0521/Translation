@@ -1,38 +1,32 @@
-# uLanding Radar
-
+# uLanding 雷达
 官网英文原文地址：[http://dev.px4.io/uart-ulanding-radar.html](http://dev.px4.io/uart-ulanding-radar.html)
 
-The uLanding radar is a product from \[Aerotenna\]\([http://aerotenna.com/sensors/\](http://aerotenna.com/sensors/\)\) and can be used to measure distance to an object.
+uLanding 雷达是 \[Aerotenna\]\([http://aerotenna.com/sensors/\](http://aerotenna.com/sensors/\)\) 的产品，可用于测量与物体之间的距离。
+## 启用硬件驱动程序
 
-## Enable the driver for your hardware
-
-Currently, this radar device is supported by any hardware which runs the OS NuttX and which can offer a serial port for the interface. Since flash space is small on some hardware you may have to enable building the driver for your target yourself. To do so add the following line to the cmake config file which corresponds to the target you want to build for:
+目前，一些OS NuttX系统的硬件支持该雷达设备，并为其提供串行端口接口。由于某些硬件上的闪存空间很小，可能需要自己构建驱动程序。为此，请将以下行添加到与要构建的目标对应的cmake配置文件中：
 
 ```
 drivers/ulanding
 ```
 
-All config files are located [here](https://github.com/PX4/Firmware/tree/master/cmake/configs).
+所有配置文件位于 [此处](https://github.com/PX4/Firmware/tree/master/cmake/configs).
 
 
 
-##  Start the driver
+##  启动驱动程序
+在系统启动期间，必须告知系统启动雷达的驱动程序。
 
-You will have to tell the sytem to start the driver for the radar during sytem startup.
-
-You can simply add the following line to an \[extras.txt\]\(advanced-system-startup.md\) file located on your SD card.
+将以下行添加到SD卡上的 \[extras.txt\]\(advanced-system-startup.md\) file located on your SD card.
 
 ```
 ulanding_radar start /dev/serial_port
 ```
 
-In the upper command you will have to replace the last argument with the serial port you have connected the hardware to.
+在上面的命令中，用连接硬件的串行端口替换最后一个参数。
 
-If you don't specify any port the driver will use /dev/ttyS2 which is the TELEM2 port on Pixhawk.
+如果没有指定任何端口，驱动程序将使用 /dev/ttyS2 ，即Pixhawk上的TELEM2端口。
+**警告**
 
-**Warning**
-
-If you are connecting the radar device to TELEM2 then make sure to set the parameter SYS\_COMPANION to 0. Otherwise the serial port
-
-will be used by a another application and you will get unexpected behaviour.
+如果将雷达设备连接到TELEM2，请确保将参数SYS_COMPANION设置为0.否则串行端口将被另一个应用程序占用，将发生不可预测的行为。
 
